@@ -1,0 +1,56 @@
+<script setup>
+import axios from "axios"
+import { onMounted, reactive } from "vue"
+import { useWordStore } from "../stores/WordStore"
+
+const store = useWordStore()
+// let state = reactive({ data: "" })
+
+// function getWordFromDictionary(word = "hello") {
+//   axios
+//     .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+//     .then((response) => {
+//       console.log(response.data)
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//     })
+// }
+
+// onMounted(() => {
+//   store.getWordFromDictionary("hello")
+// })
+function onSubmit() {
+  // handle form submit
+  store.getWordFromDictionary(store.query)
+}
+</script>
+
+<template>
+  <div class="relative">
+    <form @submit.prevent="onSubmit">
+      <img
+        src="../assets/icon-search.svg"
+        alt="search"
+        class="absolute top-1/2 -translate-y-1/2 right-6"
+      />
+      <input
+        type="text"
+        v-model="store.query"
+        class="peer search-bar"
+        placeholder="Search for any word..."
+        required
+      />
+      <span
+        class="invisible peer-invalid:visible absolute -bottom-6 text-[#FF5252]"
+        >Woops, can't be empty...</span
+      >
+    </form>
+  </div>
+</template>
+
+<style>
+.search-bar {
+  @apply block w-full h-12 md:h-16 bg-[#F4F4F4] rounded-2xl border-none text-[#2D2D2D] font-bold px-6 my-6 focus:outline focus:outline-1 focus:outline-[#A445ED] dark:bg-[#1F1F1F] dark:text-white invalid:outline invalid:outline-1 invalid:outline-[#FF5252];
+}
+</style>
