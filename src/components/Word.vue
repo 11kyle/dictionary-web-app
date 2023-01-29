@@ -73,7 +73,7 @@ const store = useWordStore()
         <a
           v-for="sourceUrl in data.sourceUrls"
           :href="sourceUrl"
-          class="text-[#2D2D2D] font-normal underline text-sm dark:text-white"
+          class="text-[#2D2D2D] font-normal underline text-sm dark:text-white break-words"
           >{{ sourceUrl }}</a
         >
       </div>
