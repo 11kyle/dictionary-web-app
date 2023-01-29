@@ -2,7 +2,7 @@
 import { ref } from "vue"
 
 const checked = ref(false)
-const font = ref("font-sans")
+const font = ref("Sans Serif")
 
 function toggleDarkMode() {
   if (checked.value) {
@@ -13,11 +13,30 @@ function toggleDarkMode() {
     // localStorage.theme = "light"
   }
 }
-function toggleFont() {
+
+function toggleFont(value) {
+  // Update font value
+  font.value = value
+  // Remove all font classes
   document.documentElement.classList.remove("font-sans")
   document.documentElement.classList.remove("font-serif")
   document.documentElement.classList.remove("font-mono")
-  document.documentElement.classList.add(font.value)
+
+  if (font) {
+    switch (font.value) {
+      case "Sans Serif":
+        document.documentElement.classList.add("font-sans")
+        break
+      case "Serif":
+        document.documentElement.classList.add("font-serif")
+        break
+      case "Mono":
+        document.documentElement.classList.add("font-mono")
+        break
+      default:
+        break
+    }
+  }
 }
 </script>
 
@@ -26,17 +45,65 @@ function toggleFont() {
     <div>
       <img src="../assets/logo.svg" alt="logo" />
     </div>
-    <div class="ml-auto">
+
+    <div class="relative group ml-auto">
+      <span
+        class="flex items-center gap-4 font-bold text-lg bg-white dark:bg-[#050505] dark:text-white group"
+      >
+        {{ font }}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="8"
+          viewBox="0 0 14 8"
+        >
+          <path
+            fill="none"
+            stroke="#A445ED"
+            stroke-width="1.5"
+            d="m1 1 6 6 6-6"
+          />
+        </svg>
+      </span>
+      <div
+        class="z-10 hidden group-hover:block absolute right-0 bg-white dark:bg-[#1F1F1F] rounded-2xl drop-shadow-[0_5px_30px_rgba(0,0,0,1)] dark:drop-shadow-[0px_5px_30px_rgba(164,69,237,1)] w-[183px] h-[152px] p-6"
+      >
+        <ul>
+          <li
+            @click="toggleFont('Sans Serif')"
+            class="font-sans text-[#2D2D2D] dark:text-white font-bold text-lg hover:text-[#A445ED] dark:hover:text-[#A445ED] py-1 cursor-pointer"
+          >
+            Sans Serif
+          </li>
+          <li
+            @click="toggleFont('Serif')"
+            class="font-serif text-[#2D2D2D] dark:text-white font-bold text-lg hover:text-[#A445ED] dark:hover:text-[#A445ED] py-1 cursor-pointer"
+          >
+            Serif
+          </li>
+          <li
+            @click="toggleFont('Mono')"
+            class="font-mono text-[#2D2D2D] dark:text-white font-bold text-lg hover:text-[#A445ED] dark:hover:text-[#A445ED] py-1 cursor-pointer"
+          >
+            Mono
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div>
       <select
         v-model="font"
         @change="toggleFont"
-        class="font-bold text-lg dark:bg-[#050505] dark:text-white"
+        class="font-bold text-lg bg-white dark:bg-[#050505] dark:text-white"
       >
-        <option value="font-sans">Sans Serif</option>
+        <option class="hover:text-[#A445ED]" value="font-sans">
+          Sans Serif
+        </option>
         <option value="font-serif">Serif</option>
         <option value="font-mono">Mono</option>
       </select>
-    </div>
+    </div> -->
     <span class="w-[1px] h-full bg-[#E9E9E9] dark:bg-[#3A3A3A] mx-4"></span>
     <div class="flex flex-col items-center">
       <label class="relative inline-flex items-center cursor-pointer">
