@@ -26,17 +26,19 @@ function toggleFont() {
     <div>
       <img src="../assets/logo.svg" alt="logo" />
     </div>
+
     <div class="ml-auto">
       <select
         v-model="font"
         @change="toggleFont"
-        class="font-bold text-lg dark:bg-[#050505] dark:text-white"
+        class="bg-white border-none text-[#2D2D2D] font-bold text-lg focus:outline-none focus:ring-0 focus:border-none block p-2.5 dark:bg-[#050505] dark:placeholder-[#757575] dark:text-white dark:focus:ring-0 dark:focus:border-none"
       >
         <option value="font-sans">Sans Serif</option>
         <option value="font-serif">Serif</option>
         <option value="font-mono">Mono</option>
       </select>
     </div>
+
     <span class="w-[1px] h-full bg-[#E9E9E9] dark:bg-[#3A3A3A] mx-4"></span>
     <div class="flex flex-col items-center">
       <label class="relative inline-flex items-center cursor-pointer">
