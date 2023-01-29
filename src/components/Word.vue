@@ -51,7 +51,7 @@ const store = useWordStore()
         <!-- Synonyms -->
         <div v-if="meaning.synonyms.length > 0" class="flex items-start">
           <h3 class="text-[#757575] font-normal text-base mr-6">Synonyms</h3>
-          <div>
+          <div class="flex flex-wrap">
             <span
               v-for="synonym in meaning.synonyms"
               class="text-[#A445ED] font-bold text-base mr-4"
